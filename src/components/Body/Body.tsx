@@ -3,12 +3,12 @@ import {
   Alert,
   Button,
   NativeSyntheticEvent,
-  StyleSheet,
   Text,
   TextInput,
   TextInputKeyPressEventData,
   View,
 } from 'react-native';
+import {bodyStyles} from './BodyStyles';
 
 export const Body = () => {
   const [inputValue, setInputValue] = useState('');
@@ -29,18 +29,19 @@ export const Body = () => {
     e: NativeSyntheticEvent<TextInputKeyPressEventData>,
   ) => {
     if (e.nativeEvent.key === 'Enter') {
+      e.preventDefault();
       addProfile();
     }
   };
   return (
-    <View style={styles.container}>
-      <View style={styles.profile}>
-        <Text style={styles.title}>Profile</Text>
+    <View style={bodyStyles.container}>
+      <View style={bodyStyles.profile}>
+        <Text style={bodyStyles.title}>Profile</Text>
         <Text>{profileText}</Text>
       </View>
-      <View style={styles.inputBlock}>
+      <View style={bodyStyles.inputBlock}>
         <TextInput
-          style={styles.input}
+          style={bodyStyles.input}
           value={inputValue}
           onChangeText={setInputValue}
           placeholder={'Enter your text'}
@@ -55,37 +56,3 @@ export const Body = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 9,
-    margin: 10,
-    backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
-  title: {
-    color: 'black',
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-  profile: {
-    height: 100,
-    width: '100%',
-    borderColor: 'grey',
-    borderWidth: 1,
-    borderRadius: 5,
-    alignItems: 'center',
-  },
-  input: {
-    height: 40,
-    width: '65%',
-    borderBottomColor: 'black',
-    borderBottomWidth: 1,
-  },
-  inputBlock: {
-    margin: 5,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-});
