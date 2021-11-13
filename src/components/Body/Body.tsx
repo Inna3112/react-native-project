@@ -35,7 +35,7 @@ export const Body = () => {
           style={bodyStyles.input}
           value={inputValue}
           onChangeText={setInputValue}
-          placeholder={'Enter your text'}
+          placeholder={'Enter your text and press "Enter"'}
           placeholderTextColor={'blue'}
           autoCorrect={false}
           autoCapitalize={'characters'}
