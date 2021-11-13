@@ -14,7 +14,7 @@ export const Footer: React.FC<PropsType> = ({title}) => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 50,
+    flex: 1,
     backgroundColor: 'blue',
     alignItems: 'center',
     justifyContent: 'center',

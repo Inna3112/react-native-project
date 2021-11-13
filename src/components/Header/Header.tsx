@@ -14,7 +14,7 @@ export const Header: React.FC<PropsType> = ({title}) => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 70,
+    flex: 2,
     backgroundColor: 'blue',
     alignItems: 'center',
     justifyContent: 'center',

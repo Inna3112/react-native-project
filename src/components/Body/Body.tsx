@@ -58,10 +58,11 @@ export const Body = () => {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 9,
     margin: 10,
     backgroundColor: 'white',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
   title: {
     color: 'black',
