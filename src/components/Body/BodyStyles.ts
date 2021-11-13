@@ -8,11 +8,6 @@ export const bodyStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
-  title: {
-    color: 'black',
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
   profile: {
     height: 100,
     width: '100%',
@@ -21,15 +16,25 @@ export const bodyStyles = StyleSheet.create({
     borderRadius: 5,
     alignItems: 'center',
   },
-  input: {
-    height: 40,
-    width: '65%',
-    borderBottomColor: 'black',
-    borderBottomWidth: 1,
+  title: {
+    color: 'black',
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  text: {
+    color: 'green',
+    fontSize: 16,
+    fontWeight: '400',
   },
   inputBlock: {
     margin: 5,
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  input: {
+    height: 40,
+    width: '100%',
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
   },
 });

@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
 import {
   Alert,
-  Button,
   NativeSyntheticEvent,
   Text,
   TextInput,
-  TextInputKeyPressEventData,
+  TextInputSubmitEditingEventData,
   View,
 } from 'react-native';
 import {bodyStyles} from './BodyStyles';
@@ -14,30 +13,22 @@ export const Body = () => {
   const [inputValue, setInputValue] = useState('');
   const [profileText, setProfileText] = useState('Some profile data');
 
-  const addProfile = () => {
-    if (inputValue.trim()) {
-      setProfileText(inputValue);
+  const addProfileText = (
+    e: NativeSyntheticEvent<TextInputSubmitEditingEventData>,
+  ) => {
+    const text = e.nativeEvent.text;
+    if (text.trim()) {
+      setProfileText(text);
       setInputValue('');
     } else {
       Alert.alert('Enter profile data!');
-    }
-  };
-  const addProfileByClick = () => {
-    addProfile();
-  };
-  const addProfileByEnter = (
-    e: NativeSyntheticEvent<TextInputKeyPressEventData>,
-  ) => {
-    if (e.nativeEvent.key === 'Enter') {
-      e.preventDefault();
-      addProfile();
     }
   };
   return (
     <View style={bodyStyles.container}>
       <View style={bodyStyles.profile}>
         <Text style={bodyStyles.title}>Profile</Text>
-        <Text>{profileText}</Text>
+        <Text style={bodyStyles.text}>{profileText}</Text>
       </View>
       <View style={bodyStyles.inputBlock}>
         <TextInput
@@ -46,12 +37,11 @@ export const Body = () => {
           onChangeText={setInputValue}
           placeholder={'Enter your text'}
           placeholderTextColor={'blue'}
-          autoFocus={true}
           autoCorrect={false}
           autoCapitalize={'characters'}
-          onKeyPress={addProfileByEnter}
+          multiline={false}
+          onSubmitEditing={addProfileText}
         />
-        <Button title={'Change profile'} onPress={addProfileByClick} />
       </View>
     </View>
   );
