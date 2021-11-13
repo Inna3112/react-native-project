@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {
+  Alert,
   Button,
   NativeSyntheticEvent,
   StyleSheet,
@@ -13,16 +14,22 @@ export const Body = () => {
   const [inputValue, setInputValue] = useState('');
   const [profileText, setProfileText] = useState('Some profile data');
 
-  const addProfileText = () => {
+  const addProfile = () => {
     if (inputValue.trim()) {
       setProfileText(inputValue);
       setInputValue('');
+    } else {
+      Alert.alert('Enter profile data!');
     }
   };
-  const addProfile = (e: NativeSyntheticEvent<TextInputKeyPressEventData>) => {
+  const addProfileByClick = () => {
+    addProfile();
+  };
+  const addProfileByEnter = (
+    e: NativeSyntheticEvent<TextInputKeyPressEventData>,
+  ) => {
     if (e.nativeEvent.key === 'Enter') {
-      setProfileText(inputValue);
-      setInputValue('');
+      addProfile();
     }
   };
   return (
@@ -37,10 +44,13 @@ export const Body = () => {
           value={inputValue}
           onChangeText={setInputValue}
           placeholder={'Enter your text'}
+          placeholderTextColor={'blue'}
           autoFocus={true}
-          onKeyPress={addProfile}
+          autoCorrect={false}
+          autoCapitalize={'characters'}
+          onKeyPress={addProfileByEnter}
         />
-        <Button title={'Change profile'} onPress={addProfileText} />
+        <Button title={'Change profile'} onPress={addProfileByClick} />
       </View>
     </View>
   );
@@ -64,6 +74,7 @@ const styles = StyleSheet.create({
     borderColor: 'grey',
     borderWidth: 1,
     borderRadius: 5,
+    alignItems: 'center',
   },
   input: {
     height: 40,

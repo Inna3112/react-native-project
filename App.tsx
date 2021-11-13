@@ -17,7 +17,7 @@ import {Footer} from './src/components/Footer/Footer';
 const App = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <Header title={'My app'} />
+      <Header title={'MY APP'} />
       <Body />
       <Footer title={'Inna Fomichova 2021'} />
     </SafeAreaView>
