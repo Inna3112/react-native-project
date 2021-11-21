@@ -1,8 +1,8 @@
 import {StyleSheet} from 'react-native';
 
-export const bodyStyles = StyleSheet.create({
+export const styles = StyleSheet.create({
   container: {
-    flex: 9,
+    flex: 1,
     margin: 10,
     backgroundColor: 'white',
     alignItems: 'center',
@@ -36,5 +36,8 @@ export const bodyStyles = StyleSheet.create({
     width: '100%',
     borderBottomColor: 'black',
     borderBottomWidth: 1,
+  },
+  buttonWrapper: {
+    margin: 10,
   },
 });
