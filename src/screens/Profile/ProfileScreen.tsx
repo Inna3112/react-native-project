@@ -1,14 +1,14 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {
   Alert,
-  Button,
   NativeSyntheticEvent,
+  Pressable,
   Text,
   TextInput,
   TextInputSubmitEditingEventData,
   View,
 } from 'react-native';
-import {styles} from './styles';
+import {styles} from './ProfileScreenStyles';
 import {ProfileScreenNavigationProp, ProfileScreenRouteProp} from '../../types';
 
 type PropsType = {
@@ -22,17 +22,18 @@ export const ProfileScreen: React.FC<PropsType> = ({route, navigation}) => {
 
   const userId = route.params;
 
-  const addProfileText = (
-    e: NativeSyntheticEvent<TextInputSubmitEditingEventData>,
-  ) => {
-    const text = e.nativeEvent.text;
-    if (text.trim()) {
-      setProfileText(text);
-      setInputValue('');
-    } else {
-      Alert.alert('Enter profile data!');
-    }
-  };
+  const addProfileText = useCallback(
+    (e: NativeSyntheticEvent<TextInputSubmitEditingEventData>) => {
+      const text = e.nativeEvent.text;
+      if (text.trim()) {
+        setProfileText(text);
+        setInputValue('');
+      } else {
+        Alert.alert('Enter profile data!');
+      }
+    },
+    [],
+  );
   return (
     <View style={styles.container}>
       <View style={styles.profile}>
@@ -54,16 +55,34 @@ export const ProfileScreen: React.FC<PropsType> = ({route, navigation}) => {
       </View>
       <Text style={styles.text}>userId: {JSON.stringify(userId)}</Text>
       <View style={styles.buttonWrapper}>
-        <Button
-          title="Go to Profile... again"
-          onPress={() => navigation.push('Profile')}
-        />
+        <Pressable
+          style={({pressed}) => [
+            {backgroundColor: pressed ? '#E6D4DE' : '#9890C7'},
+            styles.button,
+          ]}
+          onPress={() => navigation.push('Profile')}>
+          <Text style={styles.buttonText}>Go to Profile... again</Text>
+        </Pressable>
       </View>
       <View style={styles.buttonWrapper}>
-        <Button title="Go to back" onPress={() => navigation.goBack()} />
+        <Pressable
+          style={({pressed}) => [
+            {backgroundColor: pressed ? '#E6D4DE' : '#9890C7'},
+            styles.button,
+          ]}
+          onPress={() => navigation.goBack()}>
+          <Text style={styles.buttonText}>Go to back</Text>
+        </Pressable>
       </View>
       <View style={styles.buttonWrapper}>
-        <Button title="Go to Home" onPress={() => navigation.popToTop()} />
+        <Pressable
+          style={({pressed}) => [
+            {backgroundColor: pressed ? '#E6D4DE' : '#9890C7'},
+            styles.button,
+          ]}
+          onPress={() => navigation.popToTop()}>
+          <Text style={styles.buttonText}>Go to Home</Text>
+        </Pressable>
       </View>
     </View>
   );

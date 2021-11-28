@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import {Button, TextInput, View} from 'react-native';
+import {Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {
   CreatePostScreenNavigationProp,
   CreatePostScreenRouteProp,
 } from '../../types';
-import {styles} from './styles';
+import {styles} from './CreatePostScreenStyles';
 
 type PropsType = {
   navigation: CreatePostScreenNavigationProp;
@@ -23,8 +23,9 @@ export const CreatePostScreen: React.FC<PropsType> = ({navigation}) => {
         value={postText}
         onChangeText={setPostText}
       />
-      <Button
-        title="Done"
+      <TouchableOpacity
+        style={styles.button}
+        activeOpacity={0.5}
         onPress={() => {
           // Pass and merge params back to home screen
           navigation.navigate({
@@ -32,8 +33,9 @@ export const CreatePostScreen: React.FC<PropsType> = ({navigation}) => {
             params: {post: postText},
             merge: true,
           });
-        }}
-      />
+        }}>
+        <Text style={styles.buttonText}>Done</Text>
+      </TouchableOpacity>
     </View>
   );
 };

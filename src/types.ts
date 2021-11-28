@@ -1,7 +1,4 @@
-import {
-  createNativeStackNavigator,
-  NativeStackNavigationProp,
-} from '@react-navigation/native-stack';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RouteProp} from '@react-navigation/native';
 
 export type RootStackParamList = {
@@ -9,8 +6,6 @@ export type RootStackParamList = {
   Profile: {userId: number} | undefined;
   CreatePost: undefined;
 };
-
-export const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 export type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,

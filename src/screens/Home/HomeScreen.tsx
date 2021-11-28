@@ -1,6 +1,6 @@
 import React from 'react';
-import {Button, Text, View} from 'react-native';
-import {styles} from './styles';
+import {Text, TouchableOpacity, View} from 'react-native';
+import {styles} from './HomeScreenStyles';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../types';
 
@@ -13,20 +13,24 @@ export const HomeScreen: React.FC<PropsType> = ({route, navigation}) => {
     <View style={styles.container}>
       <Text style={styles.text}>Home</Text>
       <View style={styles.buttonWrapper}>
-        <Button
-          title={'Go to Profile'}
+        <TouchableOpacity
+          style={styles.button}
+          activeOpacity={0.5}
           onPress={() =>
             navigation.navigate({name: 'Profile', params: {userId: 11}})
-          }
-        />
+          }>
+          <Text style={styles.buttonText}>Go to Profile</Text>
+        </TouchableOpacity>
       </View>
       <View style={styles.buttonWrapper}>
-        <Button
-          title={'Create post'}
+        <TouchableOpacity
+          style={styles.button}
+          activeOpacity={0.5}
           onPress={() =>
             navigation.navigate({name: 'CreatePost', params: undefined})
-          }
-        />
+          }>
+          <Text style={styles.buttonText}>Create post</Text>
+        </TouchableOpacity>
       </View>
       {post ? <Text>My post: {post}</Text> : null}
     </View>

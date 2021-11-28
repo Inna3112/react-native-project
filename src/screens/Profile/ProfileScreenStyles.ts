@@ -40,4 +40,14 @@ export const styles = StyleSheet.create({
   buttonWrapper: {
     margin: 10,
   },
+  button: {
+    alignItems: 'center',
+    borderRadius: 25,
+    padding: 10,
+    width: 200,
+  },
+  buttonText: {
+    textTransform: 'uppercase',
+    color: 'white',
+  },
 });

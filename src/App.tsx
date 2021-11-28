@@ -14,8 +14,11 @@ import {appStyles} from './AppStyles';
 import {ProfileScreen} from './screens/Profile/ProfileScreen';
 import {HomeScreen} from './screens/Home/HomeScreen';
 import {NavigationContainer} from '@react-navigation/native';
-import {RootStack} from './types';
+import {RootStackParamList} from './types';
 import {CreatePostScreen} from './screens/CreatePost/CreatePostScreen';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+export const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 const App = () => {
   return (
