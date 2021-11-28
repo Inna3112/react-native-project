@@ -74,16 +74,6 @@ export const ProfileScreen: React.FC<PropsType> = ({route, navigation}) => {
           <Text style={styles.buttonText}>Go to back</Text>
         </Pressable>
       </View>
-      <View style={styles.buttonWrapper}>
-        <Pressable
-          style={({pressed}) => [
-            {backgroundColor: pressed ? '#E6D4DE' : '#9890C7'},
-            styles.button,
-          ]}
-          onPress={() => navigation.popToTop()}>
-          <Text style={styles.buttonText}>Go to Home</Text>
-        </Pressable>
-      </View>
     </View>
   );
 };
