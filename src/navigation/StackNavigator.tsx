@@ -12,11 +12,7 @@ export const HomeStackNavigator = () => {
   return (
     <HomeStack.Navigator
       screenOptions={{
-        headerStyle: {
-          backgroundColor: '#9890C7',
-        },
-        headerTintColor: 'white',
-        headerTitleAlign: 'center',
+        headerShown: false,
       }}>
       <HomeStack.Screen
         name={'Home'}
@@ -32,11 +28,7 @@ export const ProfileStackNavigator = () => {
   return (
     <ProfileStack.Navigator
       screenOptions={{
-        headerStyle: {
-          backgroundColor: '#9890C7',
-        },
-        headerTintColor: 'white',
-        headerTitleAlign: 'center',
+        headerShown: false,
       }}>
       <ProfileStack.Screen
         name={'Profile'}

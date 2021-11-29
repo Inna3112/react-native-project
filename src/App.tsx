@@ -12,15 +12,16 @@ import React from 'react';
 import {View} from 'react-native';
 import {appStyles} from './AppStyles';
 import {NavigationContainer} from '@react-navigation/native';
-import {BottomTabNavigator} from './navigation/TabNavigator';
+import {DrawerNavigator} from './navigation/DrawerNavigator';
+// import {MyDrawer} from './navigation/DrawerNavigator';
 // import {BottomTabNavigator} from './navigation/TabNavigator';
 
 const App = () => {
   return (
     <View style={appStyles.container}>
       <NavigationContainer>
-        <BottomTabNavigator />
-        {/*<DrawerNavigator />*/}
+        {/*<BottomTabNavigator />*/}
+        <DrawerNavigator />
         {/*<MyDrawer />*/}
       </NavigationContainer>
     </View>

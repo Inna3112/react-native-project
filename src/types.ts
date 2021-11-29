@@ -37,6 +37,11 @@ export type CreatePostScreenRouteProp = RouteProp<
 >;
 
 export type TabParamList = {
-  Home: NavigatorScreenParams<HomeStackParamList>;
   Profile: NavigatorScreenParams<ProfileStackParamList>;
+  Settings: undefined;
+};
+
+export type DrawerParamList = {
+  Home: NavigatorScreenParams<HomeStackParamList>;
+  Profile: TabParamList;
 };
