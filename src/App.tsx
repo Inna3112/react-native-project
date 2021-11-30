@@ -13,18 +13,17 @@ import {View} from 'react-native';
 import {appStyles} from './AppStyles';
 import {NavigationContainer} from '@react-navigation/native';
 import {DrawerNavigator} from './navigation/DrawerNavigator';
-// import {MyDrawer} from './navigation/DrawerNavigator';
-// import {BottomTabNavigator} from './navigation/TabNavigator';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 const App = () => {
   return (
-    <View style={appStyles.container}>
-      <NavigationContainer>
-        {/*<BottomTabNavigator />*/}
-        <DrawerNavigator />
-        {/*<MyDrawer />*/}
-      </NavigationContainer>
-    </View>
+    <SafeAreaProvider>
+      <View style={appStyles.container}>
+        <NavigationContainer>
+          <DrawerNavigator />
+        </NavigationContainer>
+      </View>
+    </SafeAreaProvider>
   );
 };
 

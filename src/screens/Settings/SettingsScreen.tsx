@@ -1,11 +1,12 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text} from 'react-native';
 import {styles} from './SettingsScreenStyles';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 export const SettingsScreen = () => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.text}>My settings</Text>
-    </View>
+    </SafeAreaView>
   );
 };

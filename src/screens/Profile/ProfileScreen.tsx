@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {styles} from './ProfileScreenStyles';
 import {ProfileScreenNavigationProp, ProfileScreenRouteProp} from '../../types';
+import {useDrawerStatus} from '@react-navigation/drawer';
 
 type PropsType = {
   route: ProfileScreenRouteProp;
@@ -19,6 +20,7 @@ type PropsType = {
 export const ProfileScreen: React.FC<PropsType> = ({route, navigation}) => {
   const [inputValue, setInputValue] = useState('');
   const [profileText, setProfileText] = useState('Some profile data');
+  const drawerIsOpen = useDrawerStatus();
 
   const userId = route.params;
 
@@ -51,6 +53,7 @@ export const ProfileScreen: React.FC<PropsType> = ({route, navigation}) => {
           autoCapitalize={'characters'}
           multiline={false}
           onSubmitEditing={addProfileText}
+          showSoftInputOnFocus={drawerIsOpen !== 'open'}
         />
       </View>
       <Text style={styles.text}>userId: {JSON.stringify(userId)}</Text>

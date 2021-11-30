@@ -21,14 +21,14 @@ export const DrawerNavigator = () => {
     <Drawer.Navigator
       drawerContent={props => <CustomDrawerContent {...props} />}
       screenOptions={{
-        headerStyle: {
-          backgroundColor: '#9890C7',
-        },
-        headerTintColor: 'white',
-        headerTitleAlign: 'center',
+        headerShown: false,
       }}>
       <Drawer.Screen name={'Home'} component={HomeStackNavigator} />
-      <Drawer.Screen name={'Profile'} component={BottomTabNavigator} />
+      <Drawer.Screen
+        name={'Profile'}
+        component={BottomTabNavigator}
+        options={{headerShown: false}}
+      />
     </Drawer.Navigator>
   );
 };
