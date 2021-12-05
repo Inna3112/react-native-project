@@ -1,14 +1,9 @@
 import React from 'react';
-import {
-  createDrawerNavigator,
-  DrawerContentComponentProps,
-  DrawerContentScrollView,
-  DrawerItem,
-  DrawerItemList,
-} from '@react-navigation/drawer';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 import {HomeStackNavigator} from './StackNavigator';
 import {BottomTabNavigator} from './TabNavigator';
 import {DrawerParamList} from '../types';
+import {CustomDrawerContent} from '../components/CustomDrawerContent/CustomDrawerContent';
 
 // type FeedPropsType = {
 //   navigation: DrawerNavigationProp<any>;
@@ -30,26 +25,5 @@ export const DrawerNavigator = () => {
         options={{headerShown: false}}
       />
     </Drawer.Navigator>
-  );
-};
-
-const CustomDrawerContent = (props: DrawerContentComponentProps) => {
-  return (
-    <DrawerContentScrollView
-      {...props}
-      style={{
-        backgroundColor: '#E6D4DE',
-        shadowOpacity: 0.5,
-      }}>
-      <DrawerItemList {...props} />
-      <DrawerItem
-        label="Close drawer"
-        onPress={() => props.navigation.closeDrawer()}
-      />
-      <DrawerItem
-        label="Toggle drawer"
-        onPress={() => props.navigation.toggleDrawer()}
-      />
-    </DrawerContentScrollView>
   );
 };
