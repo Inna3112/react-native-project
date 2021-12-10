@@ -14,12 +14,13 @@ import {appStyles} from './AppStyles';
 import {NavigationContainer} from '@react-navigation/native';
 import {DrawerNavigator} from './navigation/DrawerNavigator';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import RNBootSplash from 'react-native-bootsplash';
 
 const App = () => {
   return (
     <SafeAreaProvider>
       <View style={appStyles.container}>
-        <NavigationContainer>
+        <NavigationContainer onReady={() => RNBootSplash.hide()}>
           <DrawerNavigator />
         </NavigationContainer>
       </View>
