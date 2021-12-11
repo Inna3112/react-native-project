@@ -21,6 +21,7 @@ export const styles = StyleSheet.create({
     borderRadius: 25,
     padding: 10,
     width: 150,
+    margin: 5,
   },
   buttonText: {
     textTransform: 'uppercase',

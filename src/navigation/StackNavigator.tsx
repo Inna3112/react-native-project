@@ -1,9 +1,9 @@
 import React from 'react';
 import {HomeScreen} from '../screens/Home/HomeScreen';
 import {ProfileScreen} from '../screens/Profile/ProfileScreen';
-import {CreatePostScreen} from '../screens/CreatePost/CreatePostScreen';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {HomeStackParamList, ProfileStackParamList} from '../types';
+import {SearchHeroScreen} from '../screens/SearchHero/SearchHeroScreen';
 
 const HomeStack = createNativeStackNavigator<HomeStackParamList>();
 const ProfileStack = createNativeStackNavigator<ProfileStackParamList>();
@@ -23,7 +23,7 @@ export const HomeStackNavigator = () => {
         component={HomeScreen}
         options={{title: 'Home'}}
       />
-      <HomeStack.Screen name={'CreatePost'} component={CreatePostScreen} />
+      <HomeStack.Screen name={'SearchHero'} component={SearchHeroScreen} />
     </HomeStack.Navigator>
   );
 };

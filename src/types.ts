@@ -9,8 +9,8 @@ import {NavigatorScreenParams, RouteProp} from '@react-navigation/native';
 export type RootStackParamList = HomeStackParamList & ProfileStackParamList;
 
 export type HomeStackParamList = {
-  Home: {post: string} | undefined;
-  CreatePost: undefined;
+  Home: {heroName: string} | undefined;
+  SearchHero: undefined;
 };
 export type ProfileStackParamList = {
   Profile: {userId: number} | undefined;
@@ -27,13 +27,13 @@ export type ProfileScreenNavigationProp = NativeStackNavigationProp<
 >;
 export type ProfileScreenRouteProp = RouteProp<ProfileStackParamList>;
 
-export type CreatePostScreenNavigationProp = NativeStackNavigationProp<
+export type SearchHeroScreenNavigationProp = NativeStackNavigationProp<
   HomeStackParamList,
   'Home'
 >;
-export type CreatePostScreenRouteProp = RouteProp<
+export type SearchHeroScreenRouteProp = RouteProp<
   HomeStackParamList,
-  'CreatePost'
+  'SearchHero'
 >;
 
 export type TabParamList = {
