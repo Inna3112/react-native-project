@@ -1,9 +1,9 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {ProfileStackNavigator} from './StackNavigator';
 import {TabParamList} from '../types';
 import {SettingsScreen} from '../screens/Settings/SettingsScreen';
 import {Text} from 'react-native';
+import {ProfileStackNavigator} from './StackNavigators/ProfileStackNavigator';
 
 const Tab = createBottomTabNavigator<TabParamList>();
 

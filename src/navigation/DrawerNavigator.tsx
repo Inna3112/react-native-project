@@ -1,6 +1,6 @@
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import {HomeStackNavigator} from './StackNavigator';
+import {HomeStackNavigator} from './StackNavigators/HomeStackNavigator';
 import {BottomTabNavigator} from './TabNavigator';
 import {DrawerParamList} from '../types';
 import {CustomDrawerContent} from '../components/CustomDrawerContent/CustomDrawerContent';
@@ -19,11 +19,7 @@ export const DrawerNavigator = () => {
         headerShown: false,
       }}>
       <Drawer.Screen name={'Home'} component={HomeStackNavigator} />
-      <Drawer.Screen
-        name={'Profile'}
-        component={BottomTabNavigator}
-        options={{headerShown: false}}
-      />
+      <Drawer.Screen name={'Profile'} component={BottomTabNavigator} />
     </Drawer.Navigator>
   );
 };

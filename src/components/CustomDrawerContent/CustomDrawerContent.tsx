@@ -5,15 +5,13 @@ import {
   DrawerItemList,
 } from '@react-navigation/drawer';
 import React from 'react';
+import {customDrawerContentStyles} from './CustomDrawerContentStyles';
 
 export const CustomDrawerContent = (props: DrawerContentComponentProps) => {
   return (
     <DrawerContentScrollView
-      {...props}
-      style={{
-        backgroundColor: '#E6D4DE',
-        shadowOpacity: 0.5,
-      }}>
+      style={customDrawerContentStyles.container}
+      {...props}>
       <DrawerItemList {...props} />
       <DrawerItem
         label="Close drawer"
