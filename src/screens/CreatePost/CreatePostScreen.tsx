@@ -5,6 +5,7 @@ import {
   CreatePostScreenRouteProp,
 } from '../../types';
 import {styles} from './CreatePostScreenStyles';
+import {useTheme} from '@react-navigation/native';
 
 type PropsType = {
   navigation: CreatePostScreenNavigationProp;
@@ -13,11 +14,12 @@ type PropsType = {
 
 export const CreatePostScreen: React.FC<PropsType> = ({navigation}) => {
   const [postText, setPostText] = useState('');
+  const {colors} = useTheme();
 
   return (
     <View style={styles.container}>
       <TextInput
-        style={styles.input}
+        style={[styles.input, {color: colors.text}]}
         multiline
         placeholder="What's on your mind?"
         value={postText}
