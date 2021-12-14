@@ -45,6 +45,10 @@ export const styles = StyleSheet.create({
     borderRadius: 25,
     padding: 10,
     width: 200,
+    backgroundColor: '#9890C7',
+  },
+  buttonActive: {
+    backgroundColor: '#E6D4DE',
   },
   buttonText: {
     textTransform: 'uppercase',

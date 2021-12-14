@@ -59,10 +59,7 @@ export const ProfileScreen: React.FC<PropsType> = ({route, navigation}) => {
       <Text style={styles.text}>userId: {JSON.stringify(userId)}</Text>
       <View style={styles.buttonWrapper}>
         <Pressable
-          style={({pressed}) => [
-            {backgroundColor: pressed ? '#E6D4DE' : '#9890C7'},
-            styles.button,
-          ]}
+          style={({pressed}) => [styles.button, pressed && styles.buttonActive]}
           onPress={() => navigation.push('Profile')}>
           <Text style={styles.buttonText}>Go to Profile... again</Text>
         </Pressable>
