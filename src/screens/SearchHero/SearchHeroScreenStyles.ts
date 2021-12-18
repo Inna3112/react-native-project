@@ -27,4 +27,7 @@ export const styles = StyleSheet.create({
     textTransform: 'uppercase',
     color: 'white',
   },
+  error: {
+    color: 'red',
+  },
 });

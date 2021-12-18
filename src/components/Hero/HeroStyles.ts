@@ -9,7 +9,7 @@ export const heroStyles = StyleSheet.create({
   },
   itemsContainer: {
     width: 400,
-    height: 150,
+    // height: 150,
     backgroundColor: '#9890C7',
     borderWidth: 1,
     borderColor: 'black',

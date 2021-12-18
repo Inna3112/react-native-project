@@ -10,6 +10,7 @@ import {AppRootStateType} from '../../store/store';
 import {HeroType} from '../../api/api';
 import {Hero} from '../../components/Hero/Hero';
 import {getHeroes, setError} from '../../store/search-hero/reducers';
+import {useTheme} from '@react-navigation/native';
 
 type PropsType = {
   navigation: SearchHeroScreenNavigationProp;
@@ -25,6 +26,7 @@ export const SearchHeroScreen: React.FC<PropsType> = ({navigation}) => {
     state => state.heroReducer.error,
   );
   const [name, setName] = useState('');
+  const {colors} = useTheme();
 
   const onChangeHandler = (text: string) => {
     dispatch(setError({error: ''}));
@@ -36,13 +38,13 @@ export const SearchHeroScreen: React.FC<PropsType> = ({navigation}) => {
   return (
     <View style={styles.container}>
       <TextInput
-        style={styles.input}
+        style={[styles.input, {color: colors.text}]}
         multiline
-        placeholder="What's on your mind?"
+        placeholder="Enter hero's name"
         value={name}
         onChangeText={onChangeHandler}
       />
-      {!!error && <Text>{error}</Text>}
+      {!!error && <Text style={styles.error}>{error}</Text>}
       <TouchableOpacity
         style={styles.button}
         activeOpacity={0.5}
