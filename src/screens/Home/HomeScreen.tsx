@@ -9,7 +9,7 @@ type PropsType = {
   navigation: HomeScreenNavigationProp;
 };
 export const HomeScreen: React.FC<PropsType> = ({route, navigation}) => {
-  const post = route.params?.post;
+  const name = route.params?.heroName;
 
   return (
     <View style={styles.container}>
@@ -19,12 +19,12 @@ export const HomeScreen: React.FC<PropsType> = ({route, navigation}) => {
           style={styles.button}
           activeOpacity={0.5}
           onPress={() =>
-            navigation.navigate({name: 'CreatePost', params: undefined})
+            navigation.navigate({name: 'SearchHero', params: undefined})
           }>
-          <Text style={styles.buttonText}>Create post</Text>
+          <Text style={styles.buttonText}>Search hero</Text>
         </TouchableOpacity>
       </View>
-      {post ? <Text>My post: {post}</Text> : null}
+      {name ? <Text>My post: {name}</Text> : null}
     </View>
   );
 };

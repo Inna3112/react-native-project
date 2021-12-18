@@ -15,16 +15,20 @@ import {NavigationContainer} from '@react-navigation/native';
 import {DrawerNavigator} from './navigation/DrawerNavigator';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import RNBootSplash from 'react-native-bootsplash';
+import {Provider} from 'react-redux';
+import {store} from './store/store';
 
 const App = () => {
   return (
-    <SafeAreaProvider>
-      <View style={appStyles.container}>
-        <NavigationContainer onReady={() => RNBootSplash.hide()}>
-          <DrawerNavigator />
-        </NavigationContainer>
-      </View>
-    </SafeAreaProvider>
+    <Provider store={store}>
+      <SafeAreaProvider>
+        <View style={appStyles.container}>
+          <NavigationContainer onReady={() => RNBootSplash.hide()}>
+            <DrawerNavigator />
+          </NavigationContainer>
+        </View>
+      </SafeAreaProvider>
+    </Provider>
   );
 };
 
