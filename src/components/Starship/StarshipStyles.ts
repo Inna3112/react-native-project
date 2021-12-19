@@ -1,8 +1,7 @@
 import {StyleSheet} from 'react-native';
 
-export const heroStyles = StyleSheet.create({
+export const starshipStyles = StyleSheet.create({
   container: {
-    // flex: 2,
     backgroundColor: '#E6D4DE',
     alignItems: 'center',
     justifyContent: 'center',

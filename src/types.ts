@@ -45,3 +45,5 @@ export type DrawerParamList = {
   Home: NavigatorScreenParams<HomeStackParamList>;
   Profile: TabParamList;
 };
+
+export type ModeType = 'heroes' | 'starships' | '';

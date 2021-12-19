@@ -66,10 +66,7 @@ export const ProfileScreen: React.FC<PropsType> = ({route, navigation}) => {
       </View>
       <View style={styles.buttonWrapper}>
         <Pressable
-          style={({pressed}) => [
-            {backgroundColor: pressed ? '#E6D4DE' : '#9890C7'},
-            styles.button,
-          ]}
+          style={({pressed}) => [styles.button, pressed && styles.buttonActive]}
           onPress={() => navigation.goBack()}>
           <Text style={styles.buttonText}>Go to back</Text>
         </Pressable>

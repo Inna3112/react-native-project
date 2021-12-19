@@ -1,8 +1,7 @@
 import {StyleSheet} from 'react-native';
 
-export const heroStyles = StyleSheet.create({
+export const itemStyles = StyleSheet.create({
   container: {
-    // flex: 2,
     backgroundColor: '#E6D4DE',
     alignItems: 'center',
     justifyContent: 'center',
@@ -18,7 +17,7 @@ export const heroStyles = StyleSheet.create({
   },
   item: {
     color: 'white',
-    fontSize: 12,
+    fontSize: 16,
     fontWeight: 'bold',
   },
 });

@@ -7,6 +7,10 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     backgroundColor: '#E6D4DE',
   },
+  loading: {
+    color: 'green',
+    fontSize: 24,
+  },
   input: {
     height: 40,
     width: '100%',
@@ -26,6 +30,19 @@ export const styles = StyleSheet.create({
   buttonText: {
     textTransform: 'uppercase',
     color: 'white',
+  },
+  sectionPressable: {
+    alignItems: 'center',
+    backgroundColor: 'white',
+    borderRadius: 5,
+  },
+  sectionPressableActive: {
+    backgroundColor: '#9890C7',
+  },
+  sectionHeader: {
+    color: 'black',
+    fontSize: 24,
+    fontWeight: 'bold',
   },
   error: {
     color: 'red',

@@ -1,74 +1,126 @@
-import React, {useState} from 'react';
-import {Text, TextInput, TouchableOpacity, View, FlatList} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {
+  Text,
+  TouchableOpacity,
+  View,
+  FlatList,
+  SectionList,
+  Pressable,
+} from 'react-native';
 import {
   SearchHeroScreenNavigationProp,
   SearchHeroScreenRouteProp,
+  ModeType,
 } from '../../types';
 import {styles} from './SearchHeroScreenStyles';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../store/store';
-import {HeroType} from '../../api/api';
+import {ItemType} from '../../api/api';
 import {Hero} from '../../components/Hero/Hero';
-import {getHeroes, setError} from '../../store/search-hero/reducers';
-import {useTheme} from '@react-navigation/native';
+import {getHeroes} from '../../store/search-hero/reducers';
+import {Starship} from '../../components/Starship/Starship';
+import {getStarships} from '../../store/search-starships/reducers';
+import {Item} from '../../components/Item/Item';
 
 type PropsType = {
   navigation: SearchHeroScreenNavigationProp;
   route: SearchHeroScreenRouteProp;
 };
 
-export const SearchHeroScreen: React.FC<PropsType> = ({navigation}) => {
+export const SearchHeroScreen: React.FC<PropsType> = ({}) => {
   const dispatch = useDispatch();
-  const heroes = useSelector<AppRootStateType, HeroType[] | null>(
+  const [toggleMode, setToggleMode] = useState<ModeType>('');
+  // const {colors} = useTheme();
+  useEffect(() => {
+    dispatch(getHeroes());
+    dispatch(getStarships());
+  }, [dispatch]);
+
+  const heroes = useSelector<AppRootStateType, ItemType[] | null>(
     state => state.heroReducer.heroes,
   );
-  const error = useSelector<AppRootStateType, string>(
-    state => state.heroReducer.error,
+  const starships = useSelector<AppRootStateType, ItemType[] | null>(
+    state => state.starshipsReducer.starships,
   );
-  const [name, setName] = useState('');
-  const {colors} = useTheme();
-
-  const onChangeHandler = (text: string) => {
-    dispatch(setError({error: ''}));
-    setName(text);
-  };
+  const isLoading = useSelector<AppRootStateType, boolean>(
+    state => state.starshipsReducer.isLoading,
+  );
+  const data = [
+    {
+      title: 'Heroes',
+      data: heroes?.map(hero => hero.name),
+    },
+    {
+      title: 'Starships',
+      data: starships?.map(starship => starship.name),
+    },
+  ];
   const searchHandler = () => {
-    dispatch(getHeroes(name));
+    setToggleMode('');
+    dispatch(getHeroes());
+    dispatch(getStarships());
   };
+  if (isLoading) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.loading}>Loading...</Text>
+      </View>
+    );
+  }
   return (
     <View style={styles.container}>
-      <TextInput
-        style={[styles.input, {color: colors.text}]}
-        multiline
-        placeholder="Enter hero's name"
-        value={name}
-        onChangeText={onChangeHandler}
-      />
-      {!!error && <Text style={styles.error}>{error}</Text>}
+      {/*<TextInput*/}
+      {/*  style={[styles.input, {color: colors.text}]}*/}
+      {/*  multiline*/}
+      {/*  placeholder="Enter hero's name"*/}
+      {/*  value={name}*/}
+      {/*  onChangeText={onChangeHandler}*/}
+      {/*/>*/}
       <TouchableOpacity
         style={styles.button}
         activeOpacity={0.5}
         onPress={searchHandler}>
         <Text style={styles.buttonText}>Search</Text>
       </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.button}
-        activeOpacity={0.5}
-        onPress={() => {
-          // Pass and merge params back to home screen
-          navigation.navigate({
-            name: 'Home',
-            params: {heroName: name},
-            merge: true,
-          });
-        }}>
-        <Text style={styles.buttonText}>Back to home</Text>
-      </TouchableOpacity>
-      <FlatList
-        data={heroes}
-        renderItem={({item}) => <Hero hero={item} />}
-        keyExtractor={item => item.height}
-      />
+      {!toggleMode && (
+        <SectionList
+          sections={data}
+          keyExtractor={(item, index) => item + index}
+          renderItem={({item}) => <Item title={item} />}
+          renderSectionHeader={({section: {title}}) => (
+            <Pressable
+              style={({pressed}) => [
+                styles.sectionPressable,
+                pressed && styles.sectionPressableActive,
+              ]}
+              onPress={() => {
+                if (title === 'Heroes') {
+                  setToggleMode('heroes');
+                } else if (title === 'Starships') {
+                  setToggleMode('starships');
+                } else {
+                  setToggleMode('');
+                }
+              }}>
+              <Text style={styles.sectionHeader}>{title}</Text>
+            </Pressable>
+          )}
+        />
+      )}
+      {toggleMode === 'heroes' && (
+        <FlatList
+          data={heroes}
+          renderItem={({item}) => <Hero hero={item} />}
+          keyExtractor={item => item.uid}
+        />
+      )}
+      {toggleMode === 'starships' && (
+        <FlatList
+          data={starships}
+          renderItem={({item}) => <Starship starship={item} />}
+          keyExtractor={item => item.uid}
+        />
+      )}
     </View>
   );
 };
