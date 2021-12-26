@@ -10,4 +10,9 @@ export const customDrawerContentStyles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
   },
+  switch: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
 });

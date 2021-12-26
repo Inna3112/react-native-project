@@ -11,6 +11,7 @@ import {
 import {styles} from './ProfileScreenStyles';
 import {ProfileScreenNavigationProp, ProfileScreenRouteProp} from '../../types';
 import {useDrawerStatus} from '@react-navigation/drawer';
+import {useTheme} from '@react-navigation/native';
 
 type PropsType = {
   route: ProfileScreenRouteProp;
@@ -21,6 +22,7 @@ export const ProfileScreen: React.FC<PropsType> = ({route, navigation}) => {
   const [inputValue, setInputValue] = useState('');
   const [profileText, setProfileText] = useState('Some profile data');
   const drawerIsOpen = useDrawerStatus();
+  const {colors} = useTheme();
 
   const userId = route.params;
 
@@ -39,7 +41,7 @@ export const ProfileScreen: React.FC<PropsType> = ({route, navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.profile}>
-        <Text style={styles.title}>Profile</Text>
+        <Text style={[styles.title, {color: colors.text}]}>Profile</Text>
         <Text style={styles.text}>{profileText}</Text>
       </View>
       <View style={styles.inputBlock}>
@@ -61,7 +63,9 @@ export const ProfileScreen: React.FC<PropsType> = ({route, navigation}) => {
         <Pressable
           style={({pressed}) => [styles.button, pressed && styles.buttonActive]}
           onPress={() => navigation.push('Profile')}>
-          <Text style={styles.buttonText}>Go to Profile... again</Text>
+          <Text style={[styles.buttonText, {color: colors.text}]}>
+            Go to Profile... again
+          </Text>
         </Pressable>
       </View>
       <View style={styles.buttonWrapper}>

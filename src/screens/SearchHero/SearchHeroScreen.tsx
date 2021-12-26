@@ -21,6 +21,7 @@ import {getHeroes} from '../../store/search-hero/reducers';
 import {Starship} from '../../components/Starship/Starship';
 import {getStarships} from '../../store/search-starships/reducers';
 import {Item} from '../../components/Item/Item';
+import {useTheme} from '@react-navigation/native';
 
 type PropsType = {
   navigation: SearchHeroScreenNavigationProp;
@@ -30,7 +31,7 @@ type PropsType = {
 export const SearchHeroScreen: React.FC<PropsType> = ({}) => {
   const dispatch = useDispatch();
   const [toggleMode, setToggleMode] = useState<ModeType>('');
-  // const {colors} = useTheme();
+  const {colors} = useTheme();
   useEffect(() => {
     dispatch(getHeroes());
     dispatch(getStarships());
@@ -102,7 +103,9 @@ export const SearchHeroScreen: React.FC<PropsType> = ({}) => {
                   setToggleMode('');
                 }
               }}>
-              <Text style={styles.sectionHeader}>{title}</Text>
+              <Text style={[styles.sectionHeader, {color: colors.text}]}>
+                {title}
+              </Text>
             </Pressable>
           )}
         />

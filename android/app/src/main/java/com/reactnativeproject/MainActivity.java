@@ -5,6 +5,8 @@ import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate; // <- add this necessary import
 import com.zoontek.rnbootsplash.RNBootSplash; // <- add this necessary import
 
+import android.content.res.Configuration; // <- for update theme
+
 public class MainActivity extends ReactActivity {
 
   /**
@@ -30,6 +32,13 @@ public class MainActivity extends ReactActivity {
           super.loadApp(appKey);
         }
       };
+    }
+
+//for update theme
+  @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+      super.onConfigurationChanged(newConfig);
+      getReactInstanceManager().onConfigurationChanged(this, newConfig);
     }
 }
 

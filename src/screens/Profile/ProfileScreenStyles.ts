@@ -17,7 +17,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    color: 'black',
     fontSize: 24,
     fontWeight: 'bold',
   },
@@ -52,6 +51,6 @@ export const styles = StyleSheet.create({
   },
   buttonText: {
     textTransform: 'uppercase',
-    color: 'white',
+    // color: 'white',
   },
 });
