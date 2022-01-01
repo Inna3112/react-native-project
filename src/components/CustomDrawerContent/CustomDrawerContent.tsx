@@ -16,19 +16,17 @@ export const CustomDrawerContent = (props: DrawerContentComponentProps) => {
   const dispatch = useDispatch();
   const [darkMode, setDarkMode] = useState(false);
   const [manuallyMode, setManuallyMode] = useState(false);
-  // const colorScheme = Appearance.getColorScheme();
   const colorScheme = useColorScheme();
 
   useEffect(() => {
     if (!manuallyMode) {
       if (colorScheme === 'light') {
         dispatch(setTheme({theme: CustomLightTheme}));
+      } else {
+        dispatch(setTheme({theme: CustomDarkTheme}));
       }
-    } else {
-      dispatch(setTheme({theme: CustomDarkTheme}));
     }
   }, [manuallyMode, dispatch, colorScheme]);
-
   return (
     <DrawerContentScrollView
       style={customDrawerContentStyles.container}
@@ -70,6 +68,7 @@ export const CustomDrawerContent = (props: DrawerContentComponentProps) => {
           }}
         />
       </View>
+      {/*<Text>{JSON.stringify(manuallyMode)}</Text>*/}
     </DrawerContentScrollView>
   );
 };
