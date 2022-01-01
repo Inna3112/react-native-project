@@ -4,28 +4,30 @@ import {
   DrawerItem,
   DrawerItemList,
 } from '@react-navigation/drawer';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {customDrawerContentStyles} from './CustomDrawerContentStyles';
-import {Switch, View, Text} from 'react-native';
+import {Switch, View, Text, useColorScheme} from 'react-native';
 import {EventRegister} from 'react-native-event-listeners';
+import {useDispatch} from 'react-redux';
+import {setTheme} from '../../store/app/reducers';
+import {CustomDarkTheme, CustomLightTheme} from '../../constants';
 
 export const CustomDrawerContent = (props: DrawerContentComponentProps) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [darkMode, setDarkMode] = useState(false);
+  const [manuallyMode, setManuallyMode] = useState(false);
   // const colorScheme = Appearance.getColorScheme();
-  // const colorScheme = useColorScheme();
-  // useEffect(() => {
-  //   const onThemeChange = ({colorScheme}) => {
-  //     colorScheme === 'light'
-  //       ? dispatch(setTheme({theme: CustomLightTheme}))
-  //       : dispatch(setTheme({theme: CustomDarkTheme}));
-  //   };
-  //   colorScheme === 'light'
-  //     ? dispatch(setTheme({theme: CustomLightTheme}))
-  //     : dispatch(setTheme({theme: CustomDarkTheme}));
-  //   Appearance.addChangeListener(onThemeChange);
-  //   return () => Appearance.removeChangeListener(onThemeChange);
-  // }, [dispatch, colorScheme]);
+  const colorScheme = useColorScheme();
+
+  useEffect(() => {
+    if (!manuallyMode) {
+      if (colorScheme === 'light') {
+        dispatch(setTheme({theme: CustomLightTheme}));
+      }
+    } else {
+      dispatch(setTheme({theme: CustomDarkTheme}));
+    }
+  }, [manuallyMode, dispatch, colorScheme]);
 
   return (
     <DrawerContentScrollView
@@ -41,12 +43,30 @@ export const CustomDrawerContent = (props: DrawerContentComponentProps) => {
         onPress={() => props.navigation.toggleDrawer()}
       />
       <View style={customDrawerContentStyles.switch}>
-        <Text>Toggle theme</Text>
+        {darkMode ? (
+          <Text>Toggle dark mode</Text>
+        ) : (
+          <Text>Toggle light mode</Text>
+        )}
         <Switch
           value={darkMode}
+          disabled={!manuallyMode}
           onValueChange={value => {
             setDarkMode(value);
             EventRegister.emit('changeThemeEvent', value);
+          }}
+        />
+      </View>
+      <View style={customDrawerContentStyles.switch}>
+        {manuallyMode ? (
+          <Text>Toggle theme mode automatically</Text>
+        ) : (
+          <Text>Toggle theme mode manually</Text>
+        )}
+        <Switch
+          value={manuallyMode}
+          onValueChange={value => {
+            setManuallyMode(value);
           }}
         />
       </View>

@@ -1,10 +1,10 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {CustomDarkTheme, CustomLightTheme} from '../../App';
+import {CustomLightTheme, CustomDarkTheme} from '../../constants';
 
 const slice = createSlice({
   name: 'app',
   initialState: {
-    theme: null as ThemeType,
+    theme: CustomLightTheme as ThemeType,
   },
   reducers: {
     setTheme(state, action: PayloadAction<{theme: ThemeType}>) {
@@ -16,4 +16,8 @@ const slice = createSlice({
 export const appReducer = slice.reducer;
 export const {setTheme} = slice.actions;
 
-export type ThemeType = typeof CustomLightTheme | typeof CustomDarkTheme | null;
+//types
+export type ThemeType =
+  | typeof CustomLightTheme
+  | typeof CustomDarkTheme
+  | undefined;
