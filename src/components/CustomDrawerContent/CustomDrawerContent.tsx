@@ -18,7 +18,7 @@ export const CustomDrawerContent = (props: DrawerContentComponentProps) => {
   const theme = useSelector<AppRootStateType, ThemeType>(
     state => state.appReducer.theme,
   );
-  const [darkMode, setDarkMode] = useState(theme !== CustomLightTheme);
+  const [darkMode, setDarkMode] = useState(() => theme !== CustomLightTheme);
   const [manuallyMode, setManuallyMode] = useState(false);
   const colorScheme = useColorScheme();
 

@@ -13,4 +13,8 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
   },
+  map: {
+    width: '90%',
+    height: '90%',
+  },
 });
