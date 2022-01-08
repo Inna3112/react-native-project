@@ -20,3 +20,6 @@ export const CustomDarkTheme = {
     card: '#433e6b',
   },
 };
+
+export const HEROES = 'Heroes';
+export const STARSHIPS = 'Starships';

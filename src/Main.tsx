@@ -4,7 +4,7 @@ import {DrawerNavigator} from './navigation/DrawerNavigator';
 import RNBootSplash from 'react-native-bootsplash';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from './store/store';
-import {setTheme, ThemeType} from './store/app/reducers';
+import {setTheme, ThemeType} from './store/appReducers';
 import {EventRegister} from 'react-native-event-listeners';
 import {CustomDarkTheme, CustomLightTheme} from './constants';
 

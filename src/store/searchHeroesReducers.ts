@@ -1,5 +1,5 @@
 import {createSlice, Dispatch, PayloadAction} from '@reduxjs/toolkit';
-import {ItemType, starWarsAPI} from '../../api/api';
+import {ItemType, starWarsAPI} from '../api/api';
 
 const slice = createSlice({
   name: 'hero',

@@ -51,6 +51,5 @@ export const styles = StyleSheet.create({
   },
   buttonText: {
     textTransform: 'uppercase',
-    // color: 'white',
   },
 });

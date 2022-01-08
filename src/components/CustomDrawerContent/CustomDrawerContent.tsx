@@ -8,13 +8,17 @@ import React, {useEffect, useState} from 'react';
 import {customDrawerContentStyles} from './CustomDrawerContentStyles';
 import {Switch, View, Text, useColorScheme} from 'react-native';
 import {EventRegister} from 'react-native-event-listeners';
-import {useDispatch} from 'react-redux';
-import {setTheme} from '../../store/app/reducers';
+import {useDispatch, useSelector} from 'react-redux';
+import {setTheme, ThemeType} from '../../store/appReducers';
 import {CustomDarkTheme, CustomLightTheme} from '../../constants';
+import {AppRootStateType} from '../../store/store';
 
 export const CustomDrawerContent = (props: DrawerContentComponentProps) => {
   const dispatch = useDispatch();
-  const [darkMode, setDarkMode] = useState(false);
+  const theme = useSelector<AppRootStateType, ThemeType>(
+    state => state.appReducer.theme,
+  );
+  const [darkMode, setDarkMode] = useState(theme !== CustomLightTheme);
   const [manuallyMode, setManuallyMode] = useState(false);
   const colorScheme = useColorScheme();
 
@@ -26,7 +30,7 @@ export const CustomDrawerContent = (props: DrawerContentComponentProps) => {
         dispatch(setTheme({theme: CustomDarkTheme}));
       }
     }
-  }, [manuallyMode, dispatch, colorScheme]);
+  }, []);
   return (
     <DrawerContentScrollView
       style={customDrawerContentStyles.container}

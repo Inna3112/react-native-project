@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {CustomLightTheme, CustomDarkTheme} from '../../constants';
+import {CustomLightTheme, CustomDarkTheme} from '../constants';
 
 const slice = createSlice({
   name: 'app',

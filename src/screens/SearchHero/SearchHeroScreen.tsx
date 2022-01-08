@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {
   Text,
   TouchableOpacity,
@@ -17,11 +17,12 @@ import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../store/store';
 import {ItemType} from '../../api/api';
 import {Hero} from '../../components/Hero/Hero';
-import {getHeroes} from '../../store/search-hero/reducers';
+import {getHeroes} from '../../store/searchHeroesReducers';
 import {Starship} from '../../components/Starship/Starship';
-import {getStarships} from '../../store/search-starships/reducers';
+import {getStarships} from '../../store/searchStarshipsReducers';
 import {Item} from '../../components/Item/Item';
 import {useTheme} from '@react-navigation/native';
+import {HEROES, STARSHIPS} from '../../constants';
 
 type PropsType = {
   navigation: SearchHeroScreenNavigationProp;
@@ -46,37 +47,44 @@ export const SearchHeroScreen: React.FC<PropsType> = ({}) => {
   const isLoading = useSelector<AppRootStateType, boolean>(
     state => state.starshipsReducer.isLoading,
   );
-  const data = [
-    {
-      title: 'Heroes',
-      data: heroes?.map(hero => hero.name),
-    },
-    {
-      title: 'Starships',
-      data: starships?.map(starship => starship.name),
-    },
-  ];
+  const memoizedHeroes = useMemo(
+    () => heroes?.map(hero => hero.name),
+    [heroes],
+  );
+  const memoizedStarships = useMemo(
+    () => starships?.map(starship => starship.name),
+    [starships],
+  );
+
+  const memoizedData = useMemo(() => {
+    return [
+      {
+        title: HEROES,
+        data: memoizedHeroes,
+      },
+      {
+        title: STARSHIPS,
+        data: memoizedStarships,
+      },
+    ];
+  }, [memoizedHeroes, memoizedStarships]);
+
   const searchHandler = () => {
     setToggleMode('');
     dispatch(getHeroes());
     dispatch(getStarships());
   };
-  if (isLoading) {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.loading}>Loading...</Text>
-      </View>
-    );
+  if (!heroes || !starships) {
+    if (isLoading) {
+      return (
+        <View style={styles.container}>
+          <Text style={styles.loading}>Loading...</Text>
+        </View>
+      );
+    }
   }
   return (
     <View style={styles.container}>
-      {/*<TextInput*/}
-      {/*  style={[styles.input, {color: colors.text}]}*/}
-      {/*  multiline*/}
-      {/*  placeholder="Enter hero's name"*/}
-      {/*  value={name}*/}
-      {/*  onChangeText={onChangeHandler}*/}
-      {/*/>*/}
       <TouchableOpacity
         style={styles.button}
         activeOpacity={0.5}
@@ -85,7 +93,7 @@ export const SearchHeroScreen: React.FC<PropsType> = ({}) => {
       </TouchableOpacity>
       {!toggleMode && (
         <SectionList
-          sections={data}
+          sections={memoizedData}
           keyExtractor={(item, index) => item + index}
           renderItem={({item}) => <Item title={item} />}
           renderSectionHeader={({section: {title}}) => (

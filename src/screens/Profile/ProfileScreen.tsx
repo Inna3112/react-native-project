@@ -46,7 +46,7 @@ export const ProfileScreen: React.FC<PropsType> = ({route, navigation}) => {
       </View>
       <View style={styles.inputBlock}>
         <TextInput
-          style={styles.input}
+          style={[styles.input, {color: colors.text}]}
           value={inputValue}
           onChangeText={setInputValue}
           placeholder={'Enter your text and press "Enter"'}

@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
-import {heroReducer} from './search-hero/reducers';
-import {starshipsReducer} from './search-starships/reducers';
-import {appReducer} from './app/reducers';
+import {heroReducer} from './searchHeroesReducers';
+import {starshipsReducer} from './searchStarshipsReducers';
+import {appReducer} from './appReducers';
 
 export const rootReducer = combineReducers({
   appReducer,
