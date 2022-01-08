@@ -3,6 +3,7 @@ import {Text} from 'react-native';
 import {styles} from './SettingsScreenStyles';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import MapView, {Marker, Polygon} from 'react-native-maps';
+// import customMarker from '../../assets/markerIcon.svg';
 
 export const SettingsScreen = () => {
   return (
@@ -24,6 +25,8 @@ export const SettingsScreen = () => {
             longitude: 33.47119,
           }}
           title="My home)"
+          description="Welcome to my home!"
+          image={require('../../assets/icon2.png')}
         />
         <Polygon
           coordinates={[
