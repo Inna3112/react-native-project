@@ -9,7 +9,6 @@ export const styles = StyleSheet.create({
   },
   text: {
     textTransform: 'uppercase',
-    color: 'white',
     fontSize: 24,
     fontWeight: 'bold',
   },

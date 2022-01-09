@@ -3,7 +3,6 @@ import {
   Alert,
   NativeSyntheticEvent,
   Pressable,
-  Text,
   TextInput,
   TextInputSubmitEditingEventData,
   View,
@@ -12,6 +11,7 @@ import {styles} from './ProfileScreenStyles';
 import {ProfileScreenNavigationProp, ProfileScreenRouteProp} from '../../types';
 import {useDrawerStatus} from '@react-navigation/drawer';
 import {useTheme} from '@react-navigation/native';
+import {SuperText} from '../../components/SuperText/SuperText';
 
 type PropsType = {
   route: ProfileScreenRouteProp;
@@ -41,8 +41,8 @@ export const ProfileScreen: React.FC<PropsType> = ({route, navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.profile}>
-        <Text style={[styles.title, {color: colors.text}]}>Profile</Text>
-        <Text style={styles.text}>{profileText}</Text>
+        <SuperText text="Prifile" superStyle={styles.title} />
+        <SuperText text={profileText} superStyle={styles.text} />
       </View>
       <View style={styles.inputBlock}>
         <TextInput
@@ -58,21 +58,25 @@ export const ProfileScreen: React.FC<PropsType> = ({route, navigation}) => {
           showSoftInputOnFocus={drawerIsOpen !== 'open'}
         />
       </View>
-      <Text style={styles.text}>userId: {JSON.stringify(userId)}</Text>
+      <SuperText
+        text={`userId: ${JSON.stringify(userId)}`}
+        superStyle={styles.text}
+      />
       <View style={styles.buttonWrapper}>
         <Pressable
           style={({pressed}) => [styles.button, pressed && styles.buttonActive]}
           onPress={() => navigation.push('Profile')}>
-          <Text style={[styles.buttonText, {color: colors.text}]}>
-            Go to Profile... again
-          </Text>
+          <SuperText
+            text="Go to Profile... again"
+            superStyle={styles.buttonText}
+          />
         </Pressable>
       </View>
       <View style={styles.buttonWrapper}>
         <Pressable
           style={({pressed}) => [styles.button, pressed && styles.buttonActive]}
           onPress={() => navigation.goBack()}>
-          <Text style={styles.buttonText}>Go to back</Text>
+          <SuperText text="Go to back" superStyle={styles.buttonText} />
         </Pressable>
       </View>
     </View>

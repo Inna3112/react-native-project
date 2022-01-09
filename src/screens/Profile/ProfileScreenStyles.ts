@@ -21,7 +21,6 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   text: {
-    color: 'green',
     fontSize: 16,
     fontWeight: '400',
   },

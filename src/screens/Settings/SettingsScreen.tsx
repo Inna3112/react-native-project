@@ -1,8 +1,8 @@
 import React, {useRef} from 'react';
-import {Text} from 'react-native';
 import {styles} from './SettingsScreenStyles';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import MapView, {PROVIDER_GOOGLE, Marker, Polygon} from 'react-native-maps';
+import {SuperText} from '../../components/SuperText/SuperText';
 
 export const SettingsScreen = () => {
   const mapRef = useRef<MapView>(null);
@@ -36,15 +36,15 @@ export const SettingsScreen = () => {
   };
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>My map</Text>
+      <SuperText text="My map" superStyle={styles.text} />
       <MapView
         style={styles.map}
         provider={PROVIDER_GOOGLE}
         region={{
           latitude: 47.99696,
           longitude: 33.4713,
-          latitudeDelta: 0.001,
-          longitudeDelta: 0.001,
+          latitudeDelta: 0.003,
+          longitudeDelta: 0.003,
         }}
         ref={mapRef}
         onMarkerPress={onMarkerClick}
