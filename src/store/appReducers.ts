@@ -4,7 +4,7 @@ import {CustomLightTheme, CustomDarkTheme} from '../constants';
 const slice = createSlice({
   name: 'app',
   initialState: {
-    theme: CustomDarkTheme as ThemeType,
+    theme: CustomLightTheme as ThemeType,
   },
   reducers: {
     setTheme(state, action: PayloadAction<{theme: ThemeType}>) {

@@ -10,12 +10,12 @@ const Tab = createBottomTabNavigator<TabParamList>();
 export const BottomTabNavigator = () => {
   return (
     <Tab.Navigator
-      initialRouteName={'Profile'}
+      initialRouteName={'TabProfile'}
       screenOptions={({route}) => ({
         tabBarIcon: ({}) => {
-          if (route.name === 'Profile') {
+          if (route.name === 'TabProfile') {
             return <Text>📘</Text>;
-          } else if (route.name === 'Settings') {
+          } else if (route.name === 'TabSettings') {
             return <Text>⚙</Text>;
           }
         },
@@ -23,8 +23,8 @@ export const BottomTabNavigator = () => {
         tabBarInactiveTintColor: 'green',
         headerShown: false,
       })}>
-      <Tab.Screen name={'Profile'} component={ProfileStackNavigator} />
-      <Tab.Screen name={'Settings'} component={SettingsScreen} />
+      <Tab.Screen name={'TabProfile'} component={ProfileStackNavigator} />
+      <Tab.Screen name={'TabSettings'} component={SettingsScreen} />
     </Tab.Navigator>
   );
 };

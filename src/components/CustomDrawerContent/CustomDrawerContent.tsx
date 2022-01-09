@@ -58,6 +58,7 @@ export const CustomDrawerContent = (props: DrawerContentComponentProps) => {
             EventRegister.emit('changeThemeEvent', value);
           }}
         />
+        <Text>{JSON.stringify(darkMode)}</Text>
       </View>
       <View style={customDrawerContentStyles.switch}>
         {manuallyMode ? (

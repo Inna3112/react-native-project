@@ -18,8 +18,8 @@ export const DrawerNavigator = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      <Drawer.Screen name={'Home'} component={HomeStackNavigator} />
-      <Drawer.Screen name={'Profile'} component={BottomTabNavigator} />
+      <Drawer.Screen name={'MyHome'} component={HomeStackNavigator} />
+      <Drawer.Screen name={'MyProfile'} component={BottomTabNavigator} />
     </Drawer.Navigator>
   );
 };

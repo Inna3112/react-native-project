@@ -37,13 +37,13 @@ export type SearchHeroScreenRouteProp = RouteProp<
 >;
 
 export type TabParamList = {
-  Profile: NavigatorScreenParams<ProfileStackParamList>;
-  Settings: undefined;
+  TabProfile: NavigatorScreenParams<ProfileStackParamList>;
+  TabSettings: undefined;
 };
 
 export type DrawerParamList = {
-  Home: NavigatorScreenParams<HomeStackParamList>;
-  Profile: TabParamList;
+  MyHome: NavigatorScreenParams<HomeStackParamList>;
+  MyProfile: TabParamList;
 };
 
 export type ModeType = 'heroes' | 'starships' | '';
