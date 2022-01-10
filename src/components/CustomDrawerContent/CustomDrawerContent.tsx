@@ -6,12 +6,13 @@ import {
 } from '@react-navigation/drawer';
 import React, {useEffect, useState} from 'react';
 import {customDrawerContentStyles} from './CustomDrawerContentStyles';
-import {Switch, View, Text, useColorScheme} from 'react-native';
+import {Switch, View, useColorScheme} from 'react-native';
 import {EventRegister} from 'react-native-event-listeners';
 import {useDispatch, useSelector} from 'react-redux';
 import {setTheme, ThemeType} from '../../store/appReducers';
 import {CustomDarkTheme, CustomLightTheme} from '../../constants';
 import {AppRootStateType} from '../../store/store';
+import {SuperText} from '../SuperText/SuperText';
 
 export const CustomDrawerContent = (props: DrawerContentComponentProps) => {
   const dispatch = useDispatch();
@@ -46,9 +47,9 @@ export const CustomDrawerContent = (props: DrawerContentComponentProps) => {
       />
       <View style={customDrawerContentStyles.switch}>
         {darkMode ? (
-          <Text>Toggle dark mode</Text>
+          <SuperText text="Toggle dark mode" />
         ) : (
-          <Text>Toggle light mode</Text>
+          <SuperText text="Toggle light mode" />
         )}
         <Switch
           value={darkMode}
@@ -58,13 +59,12 @@ export const CustomDrawerContent = (props: DrawerContentComponentProps) => {
             EventRegister.emit('changeThemeEvent', value);
           }}
         />
-        <Text>{JSON.stringify(darkMode)}</Text>
       </View>
       <View style={customDrawerContentStyles.switch}>
         {manuallyMode ? (
-          <Text>Toggle theme mode automatically</Text>
+          <SuperText text="Toggle theme mode automatically" />
         ) : (
-          <Text>Toggle theme mode manually</Text>
+          <SuperText text="Toggle theme mode manually" />
         )}
         <Switch
           value={manuallyMode}
@@ -73,7 +73,6 @@ export const CustomDrawerContent = (props: DrawerContentComponentProps) => {
           }}
         />
       </View>
-      {/*<Text>{JSON.stringify(manuallyMode)}</Text>*/}
     </DrawerContentScrollView>
   );
 };

@@ -1,8 +1,8 @@
 import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import {styles} from './HomeScreenStyles';
 import {HomeScreenNavigationProp, HomeScreenRouteProp} from '../../types';
-import { useTheme } from "@react-navigation/native";
+import {SuperText} from '../../components/SuperText/SuperText';
 
 // type PropsType = NativeStackScreenProps<HomeStackParamList, 'Home'>;
 type PropsType = {
@@ -10,12 +10,11 @@ type PropsType = {
   navigation: HomeScreenNavigationProp;
 };
 export const HomeScreen: React.FC<PropsType> = ({route, navigation}) => {
-  const {colors} = useTheme();
   const name = route.params?.heroName;
 
   return (
     <View style={styles.container}>
-      <Text style={[styles.text, {color: colors.text}]}>Home</Text>
+      <SuperText text="Home" superStyle={styles.text} />
       <View style={styles.buttonWrapper}>
         <TouchableOpacity
           style={styles.button}
@@ -23,10 +22,10 @@ export const HomeScreen: React.FC<PropsType> = ({route, navigation}) => {
           onPress={() =>
             navigation.navigate({name: 'SearchHero', params: undefined})
           }>
-          <Text style={[styles.buttonText, {color: colors.text}]}>Search hero</Text>
+          <SuperText text="Search hero" superStyle={styles.buttonText} />
         </TouchableOpacity>
       </View>
-      {name ? <Text>My post: {name}</Text> : null}
+      {name ? <SuperText text={`My post: ${name}`} /> : null}
     </View>
   );
 };

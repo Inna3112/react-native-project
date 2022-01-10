@@ -4,7 +4,7 @@ import {useTheme} from '@react-navigation/native';
 
 type PropsType = {
   text: string;
-  superStyle: any;
+  superStyle?: {};
 };
 export const SuperText: React.FC<PropsType> = ({text, superStyle}) => {
   const {colors} = useTheme();

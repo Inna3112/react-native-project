@@ -1,6 +1,5 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import {
-  Text,
   TouchableOpacity,
   View,
   FlatList,
@@ -21,8 +20,8 @@ import {getHeroes} from '../../store/searchHeroesReducers';
 import {Starship} from '../../components/Starship/Starship';
 import {getStarships} from '../../store/searchStarshipsReducers';
 import {Item} from '../../components/Item/Item';
-import {useTheme} from '@react-navigation/native';
 import {HEROES, STARSHIPS} from '../../constants';
+import {SuperText} from '../../components/SuperText/SuperText';
 
 type PropsType = {
   navigation: SearchHeroScreenNavigationProp;
@@ -32,7 +31,6 @@ type PropsType = {
 export const SearchHeroScreen: React.FC<PropsType> = ({}) => {
   const dispatch = useDispatch();
   const [toggleMode, setToggleMode] = useState<ModeType>('');
-  const {colors} = useTheme();
   useEffect(() => {
     dispatch(getHeroes());
     dispatch(getStarships());
@@ -78,7 +76,7 @@ export const SearchHeroScreen: React.FC<PropsType> = ({}) => {
     if (isLoading) {
       return (
         <View style={styles.container}>
-          <Text style={styles.loading}>Loading...</Text>
+          <SuperText text="Loading..." superStyle={styles.loading} />
         </View>
       );
     }
@@ -89,7 +87,7 @@ export const SearchHeroScreen: React.FC<PropsType> = ({}) => {
         style={styles.button}
         activeOpacity={0.5}
         onPress={searchHandler}>
-        <Text style={styles.buttonText}>Search</Text>
+        <SuperText text="Search" superStyle={styles.buttonText} />
       </TouchableOpacity>
       {!toggleMode && (
         <SectionList
@@ -111,9 +109,7 @@ export const SearchHeroScreen: React.FC<PropsType> = ({}) => {
                   setToggleMode('');
                 }
               }}>
-              <Text style={[styles.sectionHeader, {color: colors.text}]}>
-                {title}
-              </Text>
+              <SuperText text={title} superStyle={styles.sectionHeader} />
             </Pressable>
           )}
         />
