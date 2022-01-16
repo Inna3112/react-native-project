@@ -3,8 +3,15 @@ import {styles} from './SettingsScreenStyles';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import MapView, {PROVIDER_GOOGLE, Marker, Polygon} from 'react-native-maps';
 import {SuperText} from '../../components/SuperText/SuperText';
+import {useSelector} from 'react-redux';
+import {AppRootStateType} from '../../store/store';
+import {ThemeType} from '../../store/appReducers';
+import {CustomLightTheme} from '../../constants';
 
 export const SettingsScreen = () => {
+  const theme = useSelector<AppRootStateType, ThemeType>(
+    state => state.appReducer.theme,
+  );
   const mapRef = useRef<MapView>(null);
   const coordinates = [
     {
@@ -48,6 +55,7 @@ export const SettingsScreen = () => {
         }}
         ref={mapRef}
         onMarkerPress={onMarkerClick}
+        userInterfaceStyle={theme === CustomLightTheme ? 'light' : 'dark'}
         liteMode>
         <Marker
           coordinate={{
