@@ -8,35 +8,36 @@ import {AppRootStateType} from '../../store/store';
 import {ThemeType} from '../../store/appReducers';
 import {CustomLightTheme} from '../../constants';
 
+const coordinates = [
+  {
+    latitude: 47.9967,
+    longitude: 33.47094,
+  },
+  {
+    latitude: 47.99669,
+    longitude: 33.4711,
+  },
+  {
+    latitude: 47.99709,
+    longitude: 33.47119,
+  },
+  {
+    latitude: 47.99712,
+    longitude: 33.47102,
+  },
+];
+const region = {
+  latitude: 47.99709,
+  longitude: 33.47119,
+  latitudeDelta: 0.015,
+  longitudeDelta: 0.0121,
+};
+
 export const SettingsScreen = () => {
   const theme = useSelector<AppRootStateType, ThemeType>(
     state => state.appReducer.theme,
   );
   const mapRef = useRef<MapView>(null);
-  const coordinates = [
-    {
-      latitude: 47.9967,
-      longitude: 33.47094,
-    },
-    {
-      latitude: 47.99669,
-      longitude: 33.4711,
-    },
-    {
-      latitude: 47.99709,
-      longitude: 33.47119,
-    },
-    {
-      latitude: 47.99712,
-      longitude: 33.47102,
-    },
-  ];
-  const region = {
-    latitude: 47.99709,
-    longitude: 33.47119,
-    latitudeDelta: 0.015,
-    longitudeDelta: 0.0121,
-  };
 
   const onMarkerClick = () => {
     mapRef.current?.animateToRegion(region);
